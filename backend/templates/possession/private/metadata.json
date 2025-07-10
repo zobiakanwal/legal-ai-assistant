@@ -1,0 +1,52 @@
+[
+  {
+    "title": "1.  \"Tenant Defence Template for Housing Act Claim\"",
+    "summary": "2.  This template is used by a defendant, typically a tenant, to formally contest a claim for property possession under the Housing Act 1985. It outlines various potential grounds for disputing the claim, such as procedural defects, insufficient information, or non-compliance with the Civil Procedure Rules. The document supports the legal argument that the claim is invalid and should be dismissed or stayed until the claimant complies with procedural requirements.",
+    "filename": "template_claim_form_particulars_issues_defence.docx"
+  },
+  {
+    "title": "1.  \"Defence Against Procedurally Flawed Eviction Claim\"",
+    "summary": "2.  This template is used by a defendant to dispute an eviction claim due to multiple procedural defects, such as a flawed notice and claim form. It supports the legal argument that the eviction claim is procedurally improper and should be dismissed. It is specifically applicable in cases involving secure tenancy disputes.",
+    "filename": "template_combined_procedural_defects_claimform_notice.docx"
+  },
+  {
+    "title": "1.  \"Defence Template for Property Possession Disputes\"",
+    "summary": "2.  This template is used by a defendant to dispute a claimant's entitlement to possession of a property. It provides a structured format to challenge the grounds of the claim and highlight any procedural defects. It is particularly applicable in situations involving secure tenancies and allegations of rent arrears or property deterioration.",
+    "filename": "template_disputing_ground_with_procedural_defects.docx"
+  },
+  {
+    "title": "1.  \"Property Tenancy Dispute Defense Template\"",
+    "summary": "2.  This template is used by a defendant in a legal dispute over property tenancy, specifically when the claimant seeks possession of the property. It allows the defendant to deny allegations of property damage or neglect, and to argue that the claimant's grounds for eviction are unfounded.",
+    "filename": "template_disputing_the_ground.docx"
+  },
+  {
+    "title": "1.  \"Tenant's Defence and Counterclaim Template\"",
+    "summary": "",
+    "filename": "template_disrepair_setoff_counterclaim_with_procedural_defects.docx"
+  },
+  {
+    "title": "1.  \"Tenant Defence and Counterclaim for Disrepair\"",
+    "summary": "2.  This template is used by tenants to defend themselves against eviction due to rent arrears and counterclaim for disrepair of their rented property. It supports the legal argument that the landlord has failed to maintain the property, causing it to become unfit for habitation, and that any rent arrears should be offset by the cost of repairs. It applies in the context of secure tenancies and references specific UK housing legislation.",
+    "filename": "template_disrepair_setoff_defence.docx"
+  },
+  {
+    "title": "1.  \"Tenant's Defence Template for Notice Requirements Defects\"",
+    "summary": "2.  This template is used by a tenant to defend against a possession claim on the grounds of procedural defects, specifically the lack of a valid notice served prior to the proceedings. It supports the legal argument that the absence of a valid notice invalidates the claim and makes the case procedurally improper.",
+    "filename": "template_notice_requirements_defects_defence.docx"
+  },
+  {
+    "title": "1.  \"Pre-Action Protocol Defence Template for Tenants\"",
+    "summary": "2.  This template is used by tenants to defend themselves against possession claims by social landlords. It outlines potential procedural defects in the claim, such as failure to comply with the Pre-Action Protocol for Possession Claims by Social Landlords. It is uniquely applicable to cases where the tenant believes the landlord's claim is flawed due to non-compliance with the protocol.",
+    "filename": "template_pre_action_protocol_defects_defence.docx"
+  },
+  {
+    "title": "1.  \"Defence Against Unreasonable Property Possession\"",
+    "summary": "2.  This template is used by a defendant to argue against a claimant's entitlement to possession of a property due to alleged rent arrears. It supports the legal argument that it would be unreasonable to make a possession order due to circumstances such as delayed benefit payments. It is particularly applicable when the defendant has taken steps to rectify the situation and prevent further arrears.",
+    "filename": "template_unreasonableness.docx"
+  },
+  {
+    "title": "1.  \"Tenant's Defence Against Property Possession Claim\"",
+    "summary": "2.  This document is a template for a tenant's legal defence against a landlord's claim for property possession. It supports the legal argument that the court order for possession is unreasonable and that there are procedural defects in the landlord's claim. It is specifically applicable in cases where the tenant acknowledges rent arrears but asserts they have taken steps to rectify the situation.",
+    "filename": "template_unreasonableness_with_procedural_defects.docx"
+  }
+]

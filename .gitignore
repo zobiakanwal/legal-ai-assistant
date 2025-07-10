@@ -1,0 +1,26 @@
+# Python virtual environment and bytecode
+.env
+.env.*              # in case someone names it .env.dev or .env.local
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+venv/
+.DS_Store
+
+# Node.js dependencies and build output
+frontend/node_modules/
+frontend/dist/
+
+# System & IDE files
+*.log
+*.tmp
+.vscode/
+.idea/
+
+# Generated Word documents
+*.docx
+
+# Ignore all templates contents except metadata.json (keep structure for others)
+templates/**/*.docx
+!templates/**/metadata.json
