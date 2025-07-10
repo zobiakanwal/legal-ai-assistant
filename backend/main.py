@@ -210,6 +210,34 @@ def extract_answers(messages: List[dict]):
             answers.append(messages[i]["content"])
     return answers
 
+# Add just before the AICompleteRequest class and complete_template endpoint:
+
+@app.get("/api/categories", summary="List Available Categories & Subtypes")
+def list_categories():
+    categories = {}
+
+    for cat in TEMPLATES_DIR.iterdir():
+        if not cat.is_dir():
+            continue
+
+        subtypes = []
+        for sub in cat.iterdir():
+            if sub.is_dir():
+                has_metadata = (sub / "metadata.json").exists()
+                has_docx = any(f.suffix == ".docx" for f in sub.glob("*.docx"))
+                if has_metadata or has_docx:
+                    subtypes.append(sub.name)
+
+        # Check if category itself has .docx or metadata (i.e., no subtypes)
+        has_root_docx = any(f.suffix == ".docx" for f in cat.glob("*.docx"))
+        has_root_metadata = (cat / "metadata.json").exists()
+
+        if subtypes or has_root_docx or has_root_metadata:
+            categories[cat.name] = subtypes
+
+    return categories
+
+
 @app.post("/api/ai/complete", summary="Complete Template", description="Fills in the document template based on user answers and returns the generated .docx file.")
 def complete_template(data: AICompleteRequest):
     file_path = TEMPLATES_DIR / data.category / data.filename
