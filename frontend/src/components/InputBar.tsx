@@ -5,16 +5,16 @@ import React from "react"
 type InputBarProps = {
   onSend: (text: string) => void
   inputRef: React.RefObject<HTMLInputElement | null>
+  disabled?: boolean
 }
 
-const InputBar = ({ onSend, inputRef }: InputBarProps) => {
+const InputBar: React.FC<InputBarProps> = ({ onSend, inputRef, disabled = false }) => {
   const [text, setText] = useState("")
 
   const handleSend = () => {
-    if (text.trim()) {
-      onSend(text.trim())
-      setText("")
-    }
+    if (!text.trim() || disabled) return
+    onSend(text.trim())
+    setText("")
   }
 
   return (
@@ -25,12 +25,14 @@ const InputBar = ({ onSend, inputRef }: InputBarProps) => {
         value={text}
         onChange={(e) => setText(e.target.value)}
         onKeyDown={(e) => e.key === "Enter" && handleSend()}
-        className="flex-1 border rounded-xl px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand"
+        disabled={disabled}
+        className="flex-1 border rounded-xl px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand disabled:opacity-50"
         placeholder="Type your answer..."
       />
       <button
         onClick={handleSend}
-        className="bg-brand text-white p-2 rounded-xl hover:bg-brand/90 transition"
+        disabled={disabled}
+        className="bg-brand text-white p-2 rounded-xl hover:bg-brand/90 transition disabled:opacity-50"
       >
         <FiSend />
       </button>
