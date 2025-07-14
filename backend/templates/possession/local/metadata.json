@@ -1,87 +1,87 @@
 [
   {
-    "title": "1.  \"Template for Disputing Tenancy Eviction Claims\"",
-    "summary": "2.  This template is used by a defendant (tenant) to dispute a claimant's (landlord's) grounds for eviction and highlight procedural defects in the claim. It supports the legal argument that the claimant's eviction claim is flawed due to lack of proper notice, defective claim form, or insufficient factual detail. It is applicable in cases involving secure tenancy disputes.",
-    "filename": "template_combining_disputing_the_ground_with_procedural_defects.docx"
+    "title": "Disputing Eviction with Procedural Defects",
+    "summary": "Used by tenants to challenge an eviction when the landlord failed to serve proper notice or followed incorrect legal procedures. Suitable for secure tenancy cases involving notice or claim form issues.",
+    "filename": "template_combining_disputing_the_ground_with_procedural_defects."
   },
   {
-    "title": "1.  \"Tenant's Defence and Counterclaim for Disrepair\"",
-    "summary": "2.  This template is used by tenants to defend against eviction claims and counterclaim for damages due to property disrepair. It supports the legal argument that the tenant can offset damages against rent due, and highlights any procedural flaws in the eviction notice or claim form. It applies specifically to secure tenancies and invokes the Landlord and Tenant Act 1985.",
-    "filename": "template_combining_disrepair_set_off_counterclaim_with_procedural_defects.docx"
+    "title": "Tenant’s Defence and Disrepair Counterclaim",
+    "summary": "For tenants facing eviction who also want to raise property disrepair issues (e.g. mould, leaks). Allows tenants to claim compensation and offset rent arrears under the Landlord and Tenant Act 1985.",
+    "filename": "template_combining_disrepair_set_off_counterclaim_with_procedural_defects"
   },
   {
-    "title": "1.  \"Defence Template: Equality Act and Procedural Defects\"",
-    "summary": "2.  This template is used by a defendant who is contesting a claim for possession of a property. It outlines two main legal arguments: that the claimant has breached the Equality Act 2010 and that there are procedural defects in the claimant's case. This template is particularly applicable in situations where the defendant has a disability as defined by the Equality Act 2010.",
-    "filename": "template_combining_equality_act_with_procedural_defects.docx"
+    "title": "Defence Involving Disability Discrimination and Procedure Errors",
+    "summary": "Used when a tenant with a disability is facing eviction and wants to argue discrimination under the Equality Act 2010, alongside problems in the landlord’s legal process.",
+    "filename": "template_combining_equality_act_with_procedural_defects"
   },
   {
-    "title": "1.  \"Defence Template for Property Possession Dispute\"",
-    "summary": "2.  This template provides a structure for a legal defence in a property possession dispute, asserting procedural defects and violation of the defendant's rights under Article 8 of the European Convention on Human Rights. It is specifically used when the claimant is seeking possession of a property that the defendant occupies under a secure tenancy.",
-    "filename": "template_combining_hra_1998_with_procedural_defects.docx"
+    "title": "Defence Based on Human Rights and Procedural Issues",
+    "summary": "Used to defend against eviction by arguing the landlord's actions violate the tenant’s right to a home (Article 8 of the Human Rights Act) and that legal procedures were not followed properly.",
+    "filename": "template_combining_hra_1998_with_procedural_defects"
   },
   {
-    "title": "1.  \"Defence Template for Procedural Defects\"",
-    "summary": "2.  This template is used by a defendant to argue against a claim due to multiple procedural flaws, such as a defective notice or claim form. It supports the legal argument that the claim should be dismissed due to these defects, and is particularly applicable in cases involving property possession disputes.",
-    "filename": "template_combining_multiple_procedural_defects.docx"
+    "title": "Challenging Eviction for Multiple Legal Errors",
+    "summary": "Used by tenants to defend against eviction when several issues exist with the landlord’s notice or claim form. Focuses on legal flaws in the possession process.",
+    "filename": "template_combining_multiple_procedural_defects."
   },
   {
-    "title": "1.  \"Public Law Defence and Procedural Defects Template\"",
-    "summary": "2.  This template is used by defendants in property possession cases to assert their rights and challenge the claimant's entitlement. It supports the legal argument that the proceedings were issued without a fair or lawful process and that there are procedural defects in the notice or claim form. It is particularly applicable in cases where the claimant is a public authority.",
-    "filename": "template_combining_public_law_defence_with_procedural_defects.docx"
+    "title": "Defence Involving Public Authority and Legal Process",
+    "summary": "For tenants being evicted by a council or housing association. Challenges the fairness and legality of the decision-making process, especially if key facts were ignored.",
+    "filename": "template_combining_public_law_defence_with_procedural_defects."
   },
   {
-    "title": "1.  \"Defence Against Property Possession Claim\"",
-    "summary": "2.  This template is used by a defendant to contest a claimant's right to possession of a property. It provides a legal argument based on the unreasonableness of the claim and any procedural defects in the claimant's case. It is specifically applicable in situations where the defendant is a tenant under a secure tenancy.",
-    "filename": "template_combining_unreasonableness_with_procedural_defects.docx"
+    "title": "Defending Against Possession Claim for Being Unreasonable",
+    "summary": "Used to argue that the eviction is unfair or disproportionate given the tenant’s personal circumstances, such as health issues or efforts to resolve problems.",
+    "filename": "template_combining_unreasonableness_with_procedural_defects."
   },
   {
-    "title": "1.  \"Defendant's Template for Claim Form Defects\"",
-    "summary": "2.  This template is used by a defendant to challenge the validity of a claim form for property possession, based on procedural defects or omissions in the form. It supports the legal argument that the claim is not properly constituted, and applies specifically to cases involving secure tenants under the Housing Act 1985.",
-    "filename": "template_for_claim_form_particulars_issues_defence.docx"
+    "title": "Claim Form Errors in Eviction Proceedings",
+    "summary": "Used to challenge an eviction based on mistakes in the claim form or missing legal details. Helps tenants argue that the landlord’s claim is invalid or incomplete.",
+    "filename": "template_for_claim_form_particulars_issues_defence."
   },
   {
-    "title": "1.  \"Property Tenancy Dispute Defense Template\"",
-    "summary": "2.  This template is used by a defendant to dispute a claimant's entitlement to possession of a property, typically in a secure tenancy context. It supports the legal argument that the defendant has not caused any damage or deterioration to the property, and therefore the claim for possession is unfounded. It is specifically applicable when the defendant is accused of causing property damage.",
-    "filename": "template_for_disputing_the_ground.docx"
+    "title": "Defence Against Property Damage Accusation",
+    "summary": "For tenants wrongly accused of damaging the property. Disputes the landlord’s right to evict based on false or unfair claims of damage or neglect.",
+    "filename": "template_for_disputing_the_ground."
   },
   {
-    "title": "1.  \"Tenant's Defence and Counterclaim for Disrepair\"",
-    "summary": "2.  This document template is used by a tenant to defend against a landlord's claim for possession due to rent arrears, and to counterclaim for disrepair of the property. The tenant asserts that the landlord has failed to meet statutory and contractual obligations to maintain the property, and seeks to offset any awarded damages against the claimed rent.",
-    "filename": "template_for_disrepair_and_set_off_defence.docx"
+    "title": "Defence with Disrepair and Rent Offset",
+    "summary": "Used to argue that poor property conditions justify a rent reduction and prevent eviction. Focuses on the landlord’s failure to maintain the property.",
+    "filename": "template_for_disrepair_and_set_off_defence."
   },
   {
-    "title": "1.  \"Disability Discrimination Defence Template\"",
-    "summary": "2.  This template is used by a defendant to assert their rights under the Equality Act 2010 in a property possession case. It supports the legal argument that the claimant's proceedings are unlawful due to discrimination arising from the defendant's disability or failure to make reasonable adjustments. It is specifically applicable when the defendant's disability has significantly contributed to the circumstances leading to the claim.",
-    "filename": "template_for_equality_act_defence.docx"
+    "title": "Defence for Disability Discrimination",
+    "summary": "Helps tenants facing eviction due to disability-related issues. Argues that the eviction is discriminatory or that the landlord failed to make reasonable adjustments.",
+    "filename": "template_for_equality_act_defence."
   },
   {
-    "title": "1.  \"Human Rights Act Property Defence Template\"",
-    "summary": "2.  This template is used by a defendant in a property possession case to assert their rights under Article 8 of the Human Rights Act 1998. It supports the legal argument that eviction would disproportionately interfere with their right to respect for their home, especially in cases where eviction could cause significant harm or disruption.",
-    "filename": "template_for_hra_1998_defence.docx"
+    "title": "Defending with Human Rights Arguments",
+    "summary": "Used to argue that eviction would breach the tenant’s human rights, such as disrupting family life or causing serious harm. Based on Article 8 of the Human Rights Act.",
+    "filename": "template_for_hra_1998_defence."
   },
   {
-    "title": "1.  \"Defence Template for Notice Requirement Defects\"",
-    "summary": "2.  This template is used by defendants in a legal dispute involving property possession. It supports the legal argument that the claimant's proceedings are procedurally defective due to the absence of a valid notice before initiating possession proceedings. This template is particularly applicable in cases where the defendant is a secure tenant of the property in question.",
-    "filename": "template_for_notice_requirements_defects_defence.docx"
+    "title": "Notice Not Served Before Eviction Attempt",
+    "summary": "Used when the landlord failed to serve a valid notice before starting eviction proceedings. Focuses on missing or defective legal notices.",
+    "filename": "template_for_notice_requirements_defects_defence."
   },
   {
-    "title": "1.  \"Tenant's Defence Template for Claim Defects\"",
-    "summary": "2.  This template is used by a tenant to defend against a claim for possession of a property, arguing that the claim is procedurally flawed due to errors or omissions in the Particulars of Claim. It is applicable within the context of the Housing Act 1985 and the Civil Procedure Rules.",
-    "filename": "template_for_particulars_of_claim_defects_only_defence.docx"
+    "title": "Claim Errors in Eviction Documents",
+    "summary": "For tenants disputing possession due to errors in the Particulars of Claim. Helps challenge the eviction based on incomplete or incorrect legal forms.",
+    "filename": "template_for_particulars_of_claim_defects_only_defence."
   },
   {
-    "title": "1.  \"Defence Template for Pre-Action Protocol Noncompliance\"",
-    "summary": "2.  This template is used by a defendant in a possession claim to argue that the claimant, typically a social landlord, has not complied with the required Pre-Action Protocol. It provides a framework for the defendant to detail specific areas of noncompliance, such as failure to warn, engage, provide information, consider the defendant's circumstances, or explore alternative dispute resolution.",
-    "filename": "template_for_pre_action_protocol_defects_defence.docx"
+    "title": "Defending Against Protocol Breaches",
+    "summary": "Used to argue that the landlord (especially a housing association) failed to follow the required Pre-Action Protocol steps before starting eviction. Covers lack of warnings, support, or mediation.",
+    "filename": "template_for_pre_action_protocol_defects_defence."
   },
   {
-    "title": "1.  \"Public Law Defence Template for Tenancy Disputes\"",
-    "summary": "2.  This template is used by a defendant in a tenancy dispute to argue against a claimant's entitlement to possession of a property. It supports the legal argument that the claimant, a public authority, has not followed a fair or lawful decision-making process in issuing proceedings. This document is particularly applicable in cases where the defendant believes their personal circumstances, health, or vulnerability were not adequately considered.",
-    "filename": "template_for_public_law_defence.docx"
+    "title": "Public Law Defence in Council Eviction Cases",
+    "summary": "Used when a tenant believes the council failed to consider their circumstances, support needs, or acted unfairly. Challenges the legality of the eviction decision.",
+    "filename": "template_for_public_law_defence."
   },
   {
-    "title": "1.  \"Tenant's Defence Against Property Possession Claim\"",
-    "summary": "2.  This template is used by a tenant to defend against a landlord's claim for property possession due to rent arrears. It argues that it would be unreasonable for the court to grant a possession order given the tenant's circumstances, such as delays in receiving housing benefits or changes in employment. The tenant also outlines steps taken to resolve the issue and prevent future arrears.",
-    "filename": "template_for_unreasonableness.docx"
+    "title": "Unreasonable Possession Claim Defence",
+    "summary": "Used by tenants in rent arrears who believe eviction would be unfair, such as delays in housing benefits or temporary income loss. Highlights steps taken to fix the situation.",
+    "filename": "template_for_unreasonableness."
   }
 ]

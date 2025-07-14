@@ -1,19 +1,42 @@
+import { useEffect, useState } from "react"
+import api from "@/lib/api"
+
 type Category = {
   label: string
   value: string
 }
-
-const categories: Category[] = [
-  { label: 'Possession Proceedings', value: 'possession' },
-  { label: 'Suitability Reviews', value: 'reviews' },
-  { label: 'Homelessness', value: 'homelessness' },
-]
 
 type Props = {
   onSelect: (categoryValue: string, categoryLabel: string) => void
 }
 
 const CategoryOptions = ({ onSelect }: Props) => {
+  const [categories, setCategories] = useState<Category[]>([])
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const res = await api.get("/categories")
+        const data = res.data
+        const categoryList: Category[] = Object.keys(data).map((key) => ({
+          label: formatLabel(key),
+          value: key,
+        }))
+        setCategories(categoryList)
+      } catch (err) {
+        console.error("Failed to load categories", err)
+      }
+    }
+
+    fetchCategories()
+  }, [])
+
+  const formatLabel = (key: string) => {
+    return key
+      .replace(/_/g, " ")
+      .replace(/\b\w/g, (c) => c.toUpperCase())
+  }
+
   return (
     <div className="flex flex-col sm:flex-row justify-center gap-4">
       {categories.map((cat) => (

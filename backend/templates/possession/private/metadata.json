@@ -1,52 +1,52 @@
 [
   {
-    "title": "1.  \"Tenant Defence Template for Housing Act Claim\"",
-    "summary": "2.  This template is used by a defendant, typically a tenant, to formally contest a claim for property possession under the Housing Act 1985. It outlines various potential grounds for disputing the claim, such as procedural defects, insufficient information, or non-compliance with the Civil Procedure Rules. The document supports the legal argument that the claim is invalid and should be dismissed or stayed until the claimant complies with procedural requirements.",
-    "filename": "template_claim_form_particulars_issues_defence.docx"
+    "title": "Claim Form Defence: Procedural and Legal Errors",
+    "summary": "Used by tenants to challenge a landlord’s possession claim under the Housing Act due to procedural issues, missing details, or failure to comply with legal requirements. Suitable when the notice or claim form seems flawed.",
+    "filename": "template_claim_form_particulars_issues_defence"
   },
   {
-    "title": "1.  \"Defence Against Procedurally Flawed Eviction Claim\"",
-    "summary": "2.  This template is used by a defendant to dispute an eviction claim due to multiple procedural defects, such as a flawed notice and claim form. It supports the legal argument that the eviction claim is procedurally improper and should be dismissed. It is specifically applicable in cases involving secure tenancy disputes.",
-    "filename": "template_combined_procedural_defects_claimform_notice.docx"
+    "title": "Defence: Flawed Notice and Claim Form",
+    "summary": "For tenants disputing eviction based on both a defective notice and claim form. Argues the process was not legally valid and seeks dismissal or delay of the claim.",
+    "filename": "template_combined_procedural_defects_claimform_notice"
   },
   {
-    "title": "1.  \"Defence Template for Property Possession Disputes\"",
-    "summary": "2.  This template is used by a defendant to dispute a claimant's entitlement to possession of a property. It provides a structured format to challenge the grounds of the claim and highlight any procedural defects. It is particularly applicable in situations involving secure tenancies and allegations of rent arrears or property deterioration.",
-    "filename": "template_disputing_ground_with_procedural_defects.docx"
+    "title": "Defence for Rent Arrears or Damage Allegations",
+    "summary": "Used when tenants want to dispute the landlord’s grounds for possession, such as claims of rent arrears or property damage, and highlight legal or procedural flaws.",
+    "filename": "template_disputing_ground_with_procedural_defects"
   },
   {
-    "title": "1.  \"Property Tenancy Dispute Defense Template\"",
-    "summary": "2.  This template is used by a defendant in a legal dispute over property tenancy, specifically when the claimant seeks possession of the property. It allows the defendant to deny allegations of property damage or neglect, and to argue that the claimant's grounds for eviction are unfounded.",
-    "filename": "template_disputing_the_ground.docx"
+    "title": "Defence Against Property Damage Claims",
+    "summary": "Helps tenants deny accusations of property damage or neglect. Suitable for those facing eviction based on unfounded claims of misconduct or damage.",
+    "filename": "template_disputing_the_ground"
   },
   {
-    "title": "1.  \"Tenant's Defence and Counterclaim Template\"",
-    "summary": "",
-    "filename": "template_disrepair_setoff_counterclaim_with_procedural_defects.docx"
+    "title": "Tenant’s Defence and Counterclaim (Disrepair & Procedure)",
+    "summary": "Used when tenants face eviction but the property is in disrepair. Combines a defence based on poor conditions with procedural objections like notice or form errors.",
+    "filename": "template_disrepair_setoff_counterclaim_with_procedural_defects"
   },
   {
-    "title": "1.  \"Tenant Defence and Counterclaim for Disrepair\"",
-    "summary": "2.  This template is used by tenants to defend themselves against eviction due to rent arrears and counterclaim for disrepair of their rented property. It supports the legal argument that the landlord has failed to maintain the property, causing it to become unfit for habitation, and that any rent arrears should be offset by the cost of repairs. It applies in the context of secure tenancies and references specific UK housing legislation.",
-    "filename": "template_disrepair_setoff_defence.docx"
+    "title": "Tenant Defence and Rent Offset for Disrepair",
+    "summary": "For tenants defending an eviction due to rent arrears who also claim the property is uninhabitable. Argues that rent should be reduced or waived due to disrepair.",
+    "filename": "template_disrepair_setoff_defence"
   },
   {
-    "title": "1.  \"Tenant's Defence Template for Notice Requirements Defects\"",
-    "summary": "2.  This template is used by a tenant to defend against a possession claim on the grounds of procedural defects, specifically the lack of a valid notice served prior to the proceedings. It supports the legal argument that the absence of a valid notice invalidates the claim and makes the case procedurally improper.",
-    "filename": "template_notice_requirements_defects_defence.docx"
+    "title": "Defence: No Valid Notice Before Eviction",
+    "summary": "Used when the landlord failed to serve a legally valid notice before starting the possession claim. Argues that the eviction attempt is invalid.",
+    "filename": "template_notice_requirements_defects_defence"
   },
   {
-    "title": "1.  \"Pre-Action Protocol Defence Template for Tenants\"",
-    "summary": "2.  This template is used by tenants to defend themselves against possession claims by social landlords. It outlines potential procedural defects in the claim, such as failure to comply with the Pre-Action Protocol for Possession Claims by Social Landlords. It is uniquely applicable to cases where the tenant believes the landlord's claim is flawed due to non-compliance with the protocol.",
-    "filename": "template_pre_action_protocol_defects_defence.docx"
+    "title": "Pre-Action Protocol Violation Defence",
+    "summary": "For tenants defending against a claim by showing the landlord failed to follow the Pre-Action Protocol. Applies especially to social or private landlords.",
+    "filename": "template_pre_action_protocol_defects_defence"
   },
   {
-    "title": "1.  \"Defence Against Unreasonable Property Possession\"",
-    "summary": "2.  This template is used by a defendant to argue against a claimant's entitlement to possession of a property due to alleged rent arrears. It supports the legal argument that it would be unreasonable to make a possession order due to circumstances such as delayed benefit payments. It is particularly applicable when the defendant has taken steps to rectify the situation and prevent further arrears.",
-    "filename": "template_unreasonableness.docx"
+    "title": "Unreasonable Possession Claim Defence",
+    "summary": "Used when tenants believe eviction is unfair, such as due to late benefits, job loss, or efforts to repay arrears. Highlights why possession would be disproportionate.",
+    "filename": "template_unreasonableness"
   },
   {
-    "title": "1.  \"Tenant's Defence Against Property Possession Claim\"",
-    "summary": "2.  This document is a template for a tenant's legal defence against a landlord's claim for property possession. It supports the legal argument that the court order for possession is unreasonable and that there are procedural defects in the landlord's claim. It is specifically applicable in cases where the tenant acknowledges rent arrears but asserts they have taken steps to rectify the situation.",
-    "filename": "template_unreasonableness_with_procedural_defects.docx"
+    "title": "Unreasonable and Procedurally Flawed Eviction Defence",
+    "summary": "Combines arguments that eviction is both unfair and procedurally defective. Suitable when tenants face eviction due to rent arrears but have tried to resolve the situation.",
+    "filename": "template_unreasonableness_with_procedural_defects"
   }
 ]

@@ -1,12 +1,12 @@
 [
   {
-    "title": "1.  \"Homelessness Assistance Application Template\"",
-    "summary": "2.  This template is used by individuals to formally apply for homelessness assistance under Part 7 of the Housing Act 1996. It supports the legal argument of the applicant's eligibility and need for housing assistance, detailing personal, household, and immigration information, as well as any support needs or health conditions.",
-    "filename": "homelessness.docx"
+    "title": "Homelessness Assistance Application Template",
+    "summary": "This template is used by individuals who are homeless or at risk of homelessness to formally apply for help under Part 7 of the Housing Act 1996. It supports the legal argument of their eligibility for housing assistance, including personal, household, immigration, or health-related needs.",
+    "filename": "homelessness"
   },
   {
-    "title": "1.  \"Homelessness Application Review Request Template\"",
-    "summary": "2.  This template is used to formally request a review of a decision made on a homelessness application under Section 202 of the Housing Act 1996. It supports the legal argument of the applicant disagreeing with the council's decision, providing space to detail the reasons and evidence for the disagreement. It is specifically applicable to individuals who have been unsuccessful in their homelessness application.",
-    "filename": "section202_review.docx"
+    "title": "Homelessness Application Review Request Template",
+    "summary": "Used to challenge a council decision when a homelessness application is denied. Suitable for someone who applied for help and was rejected, and now wishes to review the decision under Section 202 of the Housing Act 1996.",
+    "filename": "section202_review"
   }
 ]
