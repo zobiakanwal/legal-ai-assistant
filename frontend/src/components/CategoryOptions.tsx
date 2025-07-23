@@ -16,15 +16,17 @@ const CategoryOptions = ({ onSelect }: Props) => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const res = await api.get("/categories")
+        const res = await api.get("/api/categories")
         const data = res.data
+        console.log("✅ Categories fetched:", data)
+
         const categoryList: Category[] = Object.keys(data).map((key) => ({
           label: formatLabel(key),
           value: key,
         }))
         setCategories(categoryList)
       } catch (err) {
-        console.error("Failed to load categories", err)
+        console.error("❌ Failed to load categories", err)
       }
     }
 

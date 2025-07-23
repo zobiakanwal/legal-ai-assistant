@@ -57,6 +57,8 @@ const ChatWindow = () => {
   }
 
   const handleUserMessage = async (text: string) => {
+    if (!text.trim()) return
+
     if (!selectedSubtype || !selectedCategoryValue) return
 
     setMessages((prev) => [...prev, { sender: "user", text }])
@@ -65,9 +67,8 @@ const ChatWindow = () => {
     setLoading(true)
 
     try {
-      // First message - get template
       if (!selectedTemplateName) {
-        const res = await api.post("/ai/start", {
+        const res = await api.post("/api/ai/start", {
           category: selectedCategoryValue,
           subtype: selectedSubtype,
           user_input: text,
@@ -90,42 +91,79 @@ const ChatWindow = () => {
 
         setAwaitingUserInput(true)
       } else {
-        // Follow-up message - get next question
-        const res = await api.post("/ai/next", {
+        const res = await api.post("/api/ai/next", {
           category: selectedCategoryValue,
           filename: selectedTemplateName,
           messages: [...chatMessages, { role: "user", content: text }],
         })
 
         const reply = res.data.reply
+        console.log("➡️ GPT Reply:", JSON.stringify(reply))
+        const newChatMessages = [
+          ...chatMessages,
+          { role: "user", content: text },
+          { role: "assistant", content: reply }
+        ]
+
         setMessages((prev) => [...prev, { sender: "bot", text: reply }])
-        setChatMessages((prev) => [...prev, { role: "user", content: text }, { role: "assistant", content: reply }])
+        setChatMessages(newChatMessages)
 
-        if (reply === "__COMPLETE__") {
-          const completeRes = await api.post("/ai/complete", {
-            category: selectedCategoryValue,
-            filename: selectedTemplateName,
-            messages: [...chatMessages, { role: "user", content: text }],
-          })
+        const isFollowUp =
+          reply.trim().endsWith("?") || reply.toLowerCase().includes("please provide")
 
-          // Download file from response
-          const blob = new Blob([completeRes.data], {
-            type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-          })
-          const url = window.URL.createObjectURL(blob)
-          setDocDownloadUrl(url)
+        if (reply.trim().includes("__COMPLETE__")) {
+          console.log("📥 Triggering /api/ai/complete for download...")
 
-          setMessages((prev) => [
-            ...prev,
-            { sender: "bot", text: "✅ Your letter is ready! Click the button below to download." },
-          ])
+          try {
+            const completeRes = await api.post(
+              "/api/ai/complete",
+              {
+                category: selectedCategoryValue,
+                filename: selectedTemplateName,
+                messages: newChatMessages,
+              },
+              { responseType: "blob" }
+            )
+
+            const blob = new Blob([completeRes.data], {
+              type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+            })
+
+            const url = window.URL.createObjectURL(blob)
+            setDocDownloadUrl(url)
+            console.log("📎 Blob URL:", url)
+
+            // Auto-trigger download immediately
+            const a = document.createElement("a")
+            a.href = url
+            a.download = "Your_Legal_Document.docx"
+            document.body.appendChild(a)
+            a.click()
+            a.remove()
+
+            setMessages((prev) => [
+              ...prev,
+              { sender: "bot", text: "✅ Your letter is ready! Download should begin automatically. If not, click the button below." },
+            ])
+          } catch (err) {
+            console.error("❌ Download failed:", err)
+            setMessages((prev) => [
+              ...prev,
+              { sender: "bot", text: "⚠️ Letter generation failed. Please try again." },
+            ])
+          } finally {
+            setAwaitingUserInput(true)
+          }
         } else {
-          setAwaitingUserInput(true)
+          setAwaitingUserInput(isFollowUp)
         }
       }
     } catch (err) {
-      console.error("Chat error:", err)
-      setMessages((prev) => [...prev, { sender: "bot", text: "Something went wrong. Please try again." }])
+      console.error("❌ Chat error:", err)
+      setMessages((prev) => [
+        ...prev,
+        { sender: "bot", text: "Something went wrong. Please try again." },
+      ])
     } finally {
       setLoading(false)
     }
@@ -170,7 +208,7 @@ const ChatWindow = () => {
         )}
 
         {docDownloadUrl && (
-          <div className="text-center mt-4">
+          <div className="text-center mt-4 border-2 border-red-500 p-4 rounded-lg">
             <a
               href={docDownloadUrl}
               download="Your_Legal_Document.docx"
