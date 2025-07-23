@@ -1,70 +1,88 @@
-import { useState, useRef, useEffect } from "react"
-import MessageBubble from "./MessageBubble"
-import CategoryOptions from "./CategoryOptions"
-import InputBar from "./InputBar"
-import api from "../lib/api" // Adjust the path if needed
+import { useState, useRef, useEffect } from "react";
+import MessageBubble from "./MessageBubble";
+import CategoryOptions from "./CategoryOptions";
+import InputBar from "./InputBar";
+import api from "../lib/api"; // Adjust the path if needed
 
 const ChatWindow = () => {
   const [messages, setMessages] = useState([
     { sender: "bot", text: "Hello there 👋" },
     { sender: "bot", text: "How can I help you today?" },
-  ])
-  const [chatMessages, setChatMessages] = useState<{ role: string; content: string }[]>([])
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
-  const [selectedCategoryValue, setSelectedCategoryValue] = useState<string>("")
-  const [selectedSubtype, setSelectedSubtype] = useState<string | null>(null)
-  const [selectedTemplateName, setSelectedTemplateName] = useState<string | null>(null)
-  const [awaitingUserInput, setAwaitingUserInput] = useState(false)
-  const [loading, setLoading] = useState(false)
-  const [docDownloadUrl, setDocDownloadUrl] = useState<string | null>(null)
+  ]);
+  const [chatMessages, setChatMessages] = useState<
+    { role: string; content: string }[]
+  >([]);
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [selectedCategoryValue, setSelectedCategoryValue] =
+    useState<string>("");
+  const [selectedSubtype, setSelectedSubtype] = useState<string | null>(null);
+  const [selectedTemplateName, setSelectedTemplateName] = useState<
+    string | null
+  >(null);
+  const [awaitingUserInput, setAwaitingUserInput] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [docDownloadUrl, setDocDownloadUrl] = useState<string | null>(null);
 
-  const inputRef = useRef<HTMLInputElement | null>(null)
-  const bottomRef = useRef<HTMLDivElement | null>(null)
+  const inputRef = useRef<HTMLInputElement | null>(null);
+  const bottomRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    inputRef.current?.focus()
-    bottomRef.current?.scrollIntoView({ behavior: "smooth" })
-  }, [messages])
+    inputRef.current?.focus();
+    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
 
   const handleCategorySelect = async (value: string, label: string) => {
-    setSelectedCategory(label)
-    setSelectedCategoryValue(value)
-    setMessages((prev) => [...prev, { sender: "user", text: label }])
+    setSelectedCategory(label);
+    setSelectedCategoryValue(value);
+    setMessages((prev) => [...prev, { sender: "user", text: label }]);
 
     if (value === "possession") {
       setMessages((prev) => [
         ...prev,
-        { sender: "bot", text: "Is this for a Private Tenancy or a Local Authority Tenancy?" },
-      ])
+        {
+          sender: "bot",
+          text: "Is this for a Private Tenancy or a Local Authority Tenancy?",
+        },
+      ]);
     } else {
-      setSelectedSubtype("root")
+      setSelectedSubtype("root");
       setMessages((prev) => [
         ...prev,
-        { sender: "bot", text: "Please briefly describe your situation so I can find the most suitable letter template." },
-      ])
-      setAwaitingUserInput(true)
+        {
+          sender: "bot",
+          text: "Please briefly describe your situation so I can find the most suitable letter template.",
+        },
+      ]);
+      setAwaitingUserInput(true);
     }
-  }
+  };
 
   const handleSubtypeSelect = (subtype: string) => {
-    setSelectedSubtype(subtype)
+    setSelectedSubtype(subtype);
     setMessages((prev) => [
       ...prev,
-      { sender: "user", text: subtype === "private" ? "Private Tenancy" : "Local Authority Tenancy" },
-      { sender: "bot", text: "Please briefly describe your situation so I can find the most suitable letter template." },
-    ])
-    setAwaitingUserInput(true)
-  }
+      {
+        sender: "user",
+        text:
+          subtype === "private" ? "Private Tenancy" : "Local Authority Tenancy",
+      },
+      {
+        sender: "bot",
+        text: "Please briefly describe your situation so I can find the most suitable letter template.",
+      },
+    ]);
+    setAwaitingUserInput(true);
+  };
 
   const handleUserMessage = async (text: string) => {
-    if (!text.trim()) return
+    if (!text.trim()) return;
 
-    if (!selectedSubtype || !selectedCategoryValue) return
+    if (!selectedSubtype || !selectedCategoryValue) return;
 
-    setMessages((prev) => [...prev, { sender: "user", text }])
-    setChatMessages((prev) => [...prev, { role: "user", content: text }])
-    setAwaitingUserInput(false)
-    setLoading(true)
+    setMessages((prev) => [...prev, { sender: "user", text }]);
+    setChatMessages((prev) => [...prev, { role: "user", content: text }]);
+    setAwaitingUserInput(false);
+    setLoading(true);
 
     try {
       if (!selectedTemplateName) {
@@ -72,47 +90,51 @@ const ChatWindow = () => {
           category: selectedCategoryValue,
           subtype: selectedSubtype,
           user_input: text,
-        })
+        });
 
-        const data = res.data
-        setSelectedTemplateName(data.filename)
+        const data = res.data;
+        setSelectedTemplateName(data.filename);
 
         setMessages((prev) => [
           ...prev,
-          { sender: "bot", text: "Perfect. I’ve selected the right letter for your case." },
+          {
+            sender: "bot",
+            text: "Perfect. I’ve selected the right letter for your case.",
+          },
           { sender: "bot", text: data.question },
-        ])
+        ]);
 
         setChatMessages([
           { role: "user", content: selectedCategory! },
           { role: "user", content: text },
           { role: "assistant", content: data.question },
-        ])
+        ]);
 
-        setAwaitingUserInput(true)
+        setAwaitingUserInput(true);
       } else {
         const res = await api.post("/api/ai/next", {
           category: selectedCategoryValue,
           filename: selectedTemplateName,
           messages: [...chatMessages, { role: "user", content: text }],
-        })
+        });
 
-        const reply = res.data.reply
-        console.log("➡️ GPT Reply:", JSON.stringify(reply))
+        const reply = res.data.reply;
+        console.log("➡️ GPT Reply:", JSON.stringify(reply));
         const newChatMessages = [
           ...chatMessages,
           { role: "user", content: text },
-          { role: "assistant", content: reply }
-        ]
+          { role: "assistant", content: reply },
+        ];
 
-        setMessages((prev) => [...prev, { sender: "bot", text: reply }])
-        setChatMessages(newChatMessages)
+        setMessages((prev) => [...prev, { sender: "bot", text: reply }]);
+        setChatMessages(newChatMessages);
 
         const isFollowUp =
-          reply.trim().endsWith("?") || reply.toLowerCase().includes("please provide")
+          reply.trim().endsWith("?") ||
+          reply.toLowerCase().includes("please provide");
 
         if (reply.trim().includes("__COMPLETE__")) {
-          console.log("📥 Triggering /api/ai/complete for download...")
+          console.log("📥 Triggering /api/ai/complete for download...");
 
           try {
             const completeRes = await api.post(
@@ -123,51 +145,73 @@ const ChatWindow = () => {
                 messages: newChatMessages,
               },
               { responseType: "blob" }
-            )
+            );
+            // after: const completeRes = await api.post(...)
+            if (
+              completeRes.headers["content-type"]?.includes("application/json")
+            ) {
+              // GPT still needs info
+              const { nextQuestion } = completeRes.data;
+              setMessages((prev) => [
+                ...prev,
+                { sender: "bot", text: nextQuestion },
+              ]);
+              setChatMessages((prev) => [
+                ...prev,
+                { role: "assistant", content: nextQuestion },
+              ]);
+              setAwaitingUserInput(true);
+            } else {
+              const blob = new Blob([completeRes.data], {
+                type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+              });
 
-            const blob = new Blob([completeRes.data], {
-              type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-            })
+              const url = window.URL.createObjectURL(blob);
+              setDocDownloadUrl(url);
+              console.log("📎 Blob URL:", url);
 
-            const url = window.URL.createObjectURL(blob)
-            setDocDownloadUrl(url)
-            console.log("📎 Blob URL:", url)
+              // Auto-trigger download immediately
+              const a = document.createElement("a");
+              a.href = url;
+              a.download = "Your_Legal_Document.docx";
+              document.body.appendChild(a);
+              a.click();
+              a.remove();
 
-            // Auto-trigger download immediately
-            const a = document.createElement("a")
-            a.href = url
-            a.download = "Your_Legal_Document.docx"
-            document.body.appendChild(a)
-            a.click()
-            a.remove()
-
-            setMessages((prev) => [
-              ...prev,
-              { sender: "bot", text: "✅ Your letter is ready! Download should begin automatically. If not, click the button below." },
-            ])
+              setMessages((prev) => [
+                ...prev,
+                {
+                  sender: "bot",
+                  text: "✅ Your letter is ready! Download should begin automatically. If not, click the button below.",
+                },
+              ]);
+            }
           } catch (err) {
-            console.error("❌ Download failed:", err)
+            console.error("❌ Download failed:", err);
             setMessages((prev) => [
               ...prev,
-              { sender: "bot", text: "⚠️ Letter generation failed. Please try again." },
-            ])
+              {
+                sender: "bot",
+                text: "⚠️ Letter generation failed. Please try again.",
+              },
+            ]);
           } finally {
-            setAwaitingUserInput(true)
+            setAwaitingUserInput(true);
           }
         } else {
-          setAwaitingUserInput(isFollowUp)
+          setAwaitingUserInput(isFollowUp);
         }
       }
     } catch (err) {
-      console.error("❌ Chat error:", err)
+      console.error("❌ Chat error:", err);
       setMessages((prev) => [
         ...prev,
         { sender: "bot", text: "Something went wrong. Please try again." },
-      ])
+      ]);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   return (
     <div className="bg-white w-full max-w-2xl h-[90vh] rounded-2xl shadow-xl flex flex-col overflow-hidden border border-gray-200">
@@ -184,7 +228,9 @@ const ChatWindow = () => {
           />
         ))}
 
-        {!selectedCategory && <CategoryOptions onSelect={handleCategorySelect} />}
+        {!selectedCategory && (
+          <CategoryOptions onSelect={handleCategorySelect} />
+        )}
 
         {selectedCategoryValue === "possession" && !selectedSubtype && (
           <div className="flex gap-4">
@@ -204,7 +250,9 @@ const ChatWindow = () => {
         )}
 
         {loading && (
-          <div className="text-center text-sm text-gray-500 py-2">⏳ Loading...</div>
+          <div className="text-center text-sm text-gray-500 py-2">
+            ⏳ Loading...
+          </div>
         )}
 
         {docDownloadUrl && (
@@ -223,10 +271,14 @@ const ChatWindow = () => {
       </div>
 
       {awaitingUserInput && (
-        <InputBar onSend={handleUserMessage} inputRef={inputRef} disabled={loading} />
+        <InputBar
+          onSend={handleUserMessage}
+          inputRef={inputRef}
+          disabled={loading}
+        />
       )}
     </div>
-  )
-}
+  );
+};
 
-export default ChatWindow
+export default ChatWindow;

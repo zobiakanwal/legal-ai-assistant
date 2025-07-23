@@ -1,4 +1,5 @@
 # main.py
+from fastapi.responses import StreamingResponse
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from typing import List
@@ -6,11 +7,9 @@ import os
 import base64
 from pathlib import Path
 from docx import Document
-from fastapi import Request
 from pydantic import BaseModel
 import openai
 import uuid
-from fastapi.responses import FileResponse
 from datetime import datetime
 from dotenv import load_dotenv
 import json
@@ -167,7 +166,6 @@ def start_ai_flow(data: AIStartRequest):
         "filename": f"{data.subtype}/{selected_filename}"
     }
 
-
     except Exception as e:
         logging.exception("Unexpected server error")
         raise HTTPException(status_code=500, detail=str(e))
@@ -202,7 +200,6 @@ def ai_next_question(data: AINextRequest):
             "Do not explain or summarize the document — focus only on gathering the required inputs naturally and efficiently."
         )
 
-        # Chat call
         response = openai.chat.completions.create(
             model=GPT_MODEL,
             messages=[
@@ -250,96 +247,50 @@ def complete_template(data: AICompleteRequest):
     if not file_path.exists():
         raise HTTPException(status_code=404, detail="Template not found")
     doc = Document(file_path)
-    template_text = "\n".join([p.text for p in doc.paragraphs if p.text.strip()])
-    system_prompt = (
-    "You are a legal document filling assistant. "
-    "Use the conversation and template below to fill in all blanks as accurately as possible. "
-    "Return a valid JSON object with placeholder names as keys and user-provided answers as values. "
-    "Do not add explanations — only return the JSON."
+
+    # GPT-driven fill‑in logic
+    raw_template = "\n".join(p.text for p in doc.paragraphs if p.text.strip())
+    chat_log = "\n".join(f"{m['role']}: {m['content']}" for m in data.messages)
+
+    fill_prompt = f"""
+You are a professional legal assistant.
+Fill every gap in the document below (brackets, underlines, dotted blanks) using only the conversation data.
+
+DOCUMENT TEMPLATE:
+{raw_template}
+
+CONVERSATION:
+{chat_log}
+
+Return JSON with:
+  nextQuestion: <string or null>
+  filledDocument: <complete text or null>
+"""
+
+    resp = openai.chat.completions.create(
+        model=GPT_MODEL,
+        messages=[
+            {"role":"system","content":"You fill in and ask for missing info."},
+            {"role":"user","content": fill_prompt}
+        ],
+        temperature=0.2,
+        max_tokens=2000
     )
-    user_messages = "\n".join([f"{msg['role'].capitalize()}: {msg['content']}" for msg in data.messages])
-    full_prompt = f"TEMPLATE:\n{template_text}\n\nCONVERSATION:\n{user_messages}"
+    result = json.loads(resp.choices[0].message.content)
 
-    try:
-        response = openai.chat.completions.create(
-            model=GPT_MODEL,
-            messages=[
-                {"role": "system", "content": system_prompt},
-                {"role": "user", "content": full_prompt},
-            ],
-            temperature=0.2,
-            max_tokens=800
-        )
-        ai_output = response.choices[0].message.content
-        logging.debug(f"Raw AI output:\n{ai_output}")
+    if result["nextQuestion"]:
+        return {"nextQuestion": result["nextQuestion"]}
 
-        try:
-            field_values = json.loads(ai_output)
-        except json.JSONDecodeError as e:
-            logging.error(f"Failed to parse JSON from AI output:\n{ai_output}")
-            raise HTTPException(status_code=500, detail="AI returned invalid JSON")
-
-        if not field_values:
-            logging.warning("Parsed JSON is empty or null.")
-            raise HTTPException(status_code=500, detail="No fields returned from AI.")
-
-        logging.info("GPT field values:\n" + json.dumps(field_values, indent=2))
-
-    except openai.OpenAIError as e:
-        logging.error(f"OpenAI API error during template completion: {str(e)}")
-        raise HTTPException(status_code=500, detail="AI service error")
-
-    except Exception as e:
-        logging.exception("Unexpected server error during /api/ai/complete")
-        raise HTTPException(status_code=500, detail=str(e))
-
-    for para in doc.paragraphs:
-         matches = re.findall(r"\[(.+?)\]", para.text)
-         for placeholder in matches:
-           key = placeholder.strip().lower()
-           value = next((v for k, v in field_values.items() if k.strip().lower() == key), None)
-           if not value:
-            logging.warning(f"No match found for placeholder [{placeholder}] in AI response keys: {list(field_values.keys())}")
-
-           if value:
-                para.text = para.text.replace(f"[{placeholder}]", value)
-           else:
-                logging.warning(f"Missing value for placeholder: [{placeholder}]")
-
-    for table in doc.tables:
-        for row in table.rows:
-            for cell in row.cells:
-                matches = re.findall(r"\[(.+?)\]", cell.text)
-                for placeholder in matches:
-                    key = placeholder.strip().lower()
-                    value = next((v for k, v in field_values.items() if k.strip().lower() == key), None)
-                    if not value:
-                        logging.warning(f"No match found for placeholder [{placeholder}] in AI response keys: {list(field_values.keys())}")
-
-                    if value:
-                        cell.text = cell.text.replace(f"[{placeholder}]", value)
-                    else:
-                        logging.warning(f"Missing value for table placeholder: [{placeholder}]")
-
-    logging.info(f"All placeholders attempted for replacement in: {data.filename}")
-
-
-    output_dir = BASE_DIR / "generated"
-    generated_filename = f"{uuid.uuid4().hex}_{filename}.docx"
-    output_path = output_dir / generated_filename
-
-    # ✅ Create the full directory path, including nested folders if needed
-    os.makedirs(output_path.parent, exist_ok=True)
-
-    doc.save(output_path)
-
-    logging.info(f"Saved filled template: {filename}")
-
-    logging.info(f"Document generated at: {output_path}")
-
-    return FileResponse(
-        output_path,
+    # build final .docx from result["filledDocument"]
+    from io import BytesIO
+    out_doc = Document()
+    for line in result["filledDocument"].split("\n"):
+        out_doc.add_paragraph(line)
+    buf = BytesIO()
+    out_doc.save(buf)
+    buf.seek(0)
+    return StreamingResponse(
+        buf,
         media_type="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-        filename=f"filled_{filename}.docx"
+        headers={"Content-Disposition":f"attachment; filename=filled_{filename}.docx"}
     )
-    
