@@ -71,7 +71,11 @@ class AIStartRequest(BaseModel):
 @app.post("/api/ai/start")
 def start_ai_flow(data: AIStartRequest):
     try:
-        metadata_path = TEMPLATES_DIR / data.category / (data.subtype or "") / "metadata.json"
+        if data.subtype:
+            metadata_path = TEMPLATES_DIR / data.category / data.subtype / "metadata.json"
+        else:
+            metadata_path = TEMPLATES_DIR / data.category / "metadata.json"
+
         if not metadata_path.exists():
             raise HTTPException(status_code=500, detail="metadata.json not found")
         with open(metadata_path, "r", encoding="utf-8") as f:
@@ -129,7 +133,11 @@ def start_ai_flow(data: AIStartRequest):
         doc_filename = f"{selected_filename}.docx"
         logging.info(f"Selected Template File: {doc_filename}")
 
-        doc_path = TEMPLATES_DIR / data.category / (data.subtype or "") / doc_filename
+        if data.subtype:
+            doc_path = TEMPLATES_DIR / data.category / data.subtype / doc_filename
+        else:
+            doc_path = TEMPLATES_DIR / data.category / doc_filename
+
         if not doc_path.exists():
             raise HTTPException(status_code=404, detail="Selected template file not found")
 
@@ -163,7 +171,7 @@ def start_ai_flow(data: AIStartRequest):
         question = q_response.choices[0].message.content.strip()
         return {
         "question": question,
-        "filename": f"{data.subtype}/{selected_filename}"
+        "filename": f"{data.subtype}/{selected_filename}" if data.subtype else selected_filename
     }
 
     except Exception as e:
